@@ -1,8 +1,6 @@
 # EZ_openMSIStream
 
-Welcome to EZ_openMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image: <br>
-
-https://hub.docker.com/r/openmsi/openmsistream. <br>
+Welcome to EZ_openMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image (https://hub.docker.com/r/openmsi/openmsistream) <br>
 
 The main functionality resides in startup-script.sh, which allows you to write the openmsistream module and command that you need. <br>
 To build a docker image, The Dockerfile will move the necessary Kafka config file and startup-script.sh to the docker container. <br>
