@@ -1,4 +1,0 @@
-#/bin/bash
-export CONFLUENT_BOOTSTRAP_SERVERS=pkc-ep9mm.us-east-2.aws.confluent.cloud:9092
-export CONFLUENT_USERNAME=J5XA7OPVEKAWDVFD
-export CONFLUENT_PASSWORD=2bdYGFnxthdWCYAW99FyOd+sscPwu7j96kYYDC7B7GB9jM/olkpslNakfm0E2jzO
