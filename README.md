@@ -12,7 +12,15 @@ Then, one can then:
 
 ## 1) Steps
 
-- edit your environnment variable in openmsi.env
+- pull image
+- create openmsi.env with the necessary 3 credentials, and more based on your use case:
+
+```
+CONFLUENT_BOOTSTRAP_SERVERS=
+CONFLUENT_USERNAME=
+CONFLUENT_PASSWORD=
+```
+
 - edit your script in startup-script.sh 
 
 ### 2) a) As a Docker Daemon
