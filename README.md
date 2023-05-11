@@ -13,6 +13,11 @@ Then, one can then:
 ## 1) Steps
 
 - pull image
+
+```
+docker pull openmsi/openmsistream
+```
+
 - create openmsi.env with the necessary 3 credentials, and more based on your use case:
 
 ```
@@ -20,6 +25,7 @@ CONFLUENT_BOOTSTRAP_SERVERS=
 CONFLUENT_USERNAME=
 CONFLUENT_PASSWORD=
 ```
+- edit client.id in config.config
 
 - edit your script in startup-script.sh 
 
