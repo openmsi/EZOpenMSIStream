@@ -1,6 +1,6 @@
 # EZ_openMSIStream
 
-Welcome to EZ_openMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image <br>
+Welcome to EZ_openMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image. <br>
 
 ### 1) Universal Steps
 
@@ -26,27 +26,27 @@ CONFLUENT_PASSWORD=
 
 With this option, all the user needs is to run a few commands from the Command Line Interface (CLI).
 
-#### 2 a) as a Docker Daemon
+#### As a Docker Daemon
 
 ```
 docker run -d -v [TARGET_FOLDER]:/home/openmsi/data -v local.config:/local.config --env-file openmsi.env openmsi/image [OPENMSISTREAM COMMAND]
 ```
 
-#### 2) b) As a script in bash cell
+#### As a script in bash cell
 
 ```
 docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v local.config/local.config --env-file openmsi.env --entrypoint /bin/bash openmsi/openmsistream
 ```
 
-## 3) Use OpenMSIStream with a custom image
+### 3) Use OpenMSIStream with a custom image
 
 This method allows you to track your OpenMSIStream command in startup-script.sh and run it as a bash script. 
 
-#### 3) a) Step 1
+#### Step 1
 
 - edit your script in startup-script.sh 
 
-#### 3) b) As a Docker Daemon
+#### As a Docker Daemon
 
 ```
 docker build -t [IMAGE_TAG] .
@@ -54,7 +54,7 @@ docker build -t [IMAGE_TAG] .
 docker run -it -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
 ```
 
-#### 3) c) As a script in bash cell
+#### As a script in bash cell
 
 - Uncomment the ENTRYPOINT line in the Dockerfile <br>
 
