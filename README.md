@@ -4,7 +4,7 @@ Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e.
 
 ### 1) Universal Steps
 
-- Install Docker
+- Install Docker (https://docs.docker.com/get-docker/)
 - Pull official OpenMSIstream image (https://hub.docker.com/r/openmsi/openmsistream)
 
 ```
@@ -20,17 +20,18 @@ CONFLUENT_PASSWORD=
 
 - edit config.config to set up the streaming pipeline and parameters (i.e., client.id)
 
-Note on vocabulary: <br>
-TARGET_FOLDER = folder where data is to be produced or consumed. Inside, it is always named 'data' <br> 
+**Note on vocabulary used below:** <br>
+TARGET_FOLDER = folder where data is to be produced or consumed. Whatever name the original folder has, it will always be represent as 'data' in the docker image <br> 
 OPENMSISTREAM_COMMAND = the command that you will run using the OpenMSIStream modules
-- Example: DataFileDownloadDirectory data --config config.config --topic_name ucsb_indentation_data
-IMAGE_TAG = Name of the image set during ```docker build``` with --tag or -t  <br> 
+- Example: DataFileDownloadDirectory data --config config.config --topic_name ucsb_indentation_data <br> 
+IMAGE_TAG = Name of the image set during ```docker build``` with --tag / -t option <br> 
 IMAGE_ID = ID of the image generated during ```docker build```. It is passed to ```docker run``` to instantiate the image in a container  <br> 
-CONTAINER_ID = ID/Name of the container that is generated during ```docker run```. 
+CONTAINER_ID = ID/Name of the container that is generated during ```docker run``` in which the image is running. 
 
 ### 2) Use OpenMSIStream with the default image
 
-With this option, all the user needs is to run a few commands from the Command Line Interface (CLI). **The custom_image folder won't be used**.
+With this option, all the user needs is to run a few commands from the Command Line Interface (CLI).
+**The custom_image folder won't be used**.
 
 #### As a Docker Daemon
 
@@ -76,7 +77,7 @@ docker exec -it [CONTAINER_ID] bash
 Both approaches require maintaining a local configuration and running Docker locally, whether interactively or non-interactively. Both will have filesystem permission issues (see below).
 
 - default image
-  - + simpler image management
+  - &oplus; simpler image management
   - - more complex command line
 
 - custom image
