@@ -1,6 +1,6 @@
-# EZ_openMSIStream
+# EZOpenMSIStream
 
-Welcome to EZ_openMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image. <br>
+Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image. <br>
 
 ### 1) Universal Steps
 
