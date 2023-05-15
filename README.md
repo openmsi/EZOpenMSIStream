@@ -23,7 +23,7 @@ CONFLUENT_PASSWORD=
 
 ### 2) Use OpenMSIStream with the default image
 
-With this option, all the user needs is to run a few commands from the Command Line Interface (CLI). **There is no need for the custom_image folder**.
+With this option, all the user needs is to run a few commands from the Command Line Interface (CLI). **The custom_image folder won't be used but it contains **.
 
 #### As a Docker Daemon
 
@@ -39,7 +39,7 @@ docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v local.config/local.confi
 
 ### 3) Use OpenMSIStream with a custom image
 
-This method allows you to create a custom Docker image that runs your OpenMSIStream command in a bash script.
+Inside custom_image/, this method allows you to create a custom Docker image that runs your OpenMSIStream command in a bash script.
 
 #### Step 1
 
@@ -63,6 +63,8 @@ After building and running the image with the instructions in 2) a): <br>
 docker exec -it [CONTAINER_ID] bash
 . ./startup-script.sh
 ```
+
+### Pros and Cons
 
 #### Notes
 
