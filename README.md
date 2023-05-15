@@ -24,6 +24,7 @@ CONFLUENT_PASSWORD=
 TARGET_FOLDER = folder where data is to be produced or consumed. Whatever name the original folder has, it will always be represent as 'data' in the docker image <br> 
 OPENMSISTREAM_COMMAND = the command that you will run using the OpenMSIStream modules
 - Example: DataFileDownloadDirectory data --config config.config --topic_name ucsb_indentation_data <br> 
+
 IMAGE_TAG = Name of the image set during ```docker build``` with --tag / -t option <br> 
 IMAGE_ID = ID of the image generated during ```docker build```. It is passed to ```docker run``` to instantiate the image in a container  <br> 
 CONTAINER_ID = ID/Name of the container that is generated during ```docker run``` in which the image is running. 
@@ -77,11 +78,11 @@ docker exec -it [CONTAINER_ID] bash
 Both approaches require maintaining a local configuration and running Docker locally, whether interactively or non-interactively. Both will have filesystem permission issues (see below).
 
 - default image
-  - &oplus; simpler image management
+  - :heavy_plus_sign: simpler image management
   - - more complex command line
 
 - custom image
-  - + simpler configuration management?
+  - :heavy_plus_sign: simpler configuration management?
   - + beginneer-friendly with trackable commands in files
   - - complex image management
     - images and containers must be built and deleted after end of use (see ```docker ps```). If not, the images and containers will continue to reside in memory 
