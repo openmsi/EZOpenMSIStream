@@ -12,24 +12,43 @@ Then, one can then:
 
 ## 1) Steps
 
-- pull image
+- Install Docker
+- Pull official OpenMSIstream image
 
 ```
 docker pull openmsi/openmsistream
 ```
 
-- create openmsi.env with the necessary 3 credentials, and more based on your use case:
+- Create openmsi.env with the necessary 3 credentials, and more environnment variables based on your use case:
 
 ```
 CONFLUENT_BOOTSTRAP_SERVERS=
 CONFLUENT_USERNAME=
 CONFLUENT_PASSWORD=
 ```
-- edit client.id in config.config
+
+- edit config.config (i.e., client.id)
+
+
+## 2) with the default image
+
+### 2 a) as a Docker Daemon
+
+```
+docker run -d -v [TARGET_FOLDER]:/home/openmsi/data -v local.config:/local.config --env-file openmsi.env openmsi/image [OPENMSISTREAM COMMAND]
+```
+
+### 2) b) As a script in bash cell
+
+```
+docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v local.config/local.config --env-file openmsi.env --entrypoint /bin/bash openmsi/openmsistream
+```
+
+## 3) with a custom image
 
 - edit your script in startup-script.sh 
 
-### 2) a) As a Docker Daemon
+### 3) a) As a Docker Daemon
 
 ```
 docker build -t [IMAGE_TAG] .
@@ -37,7 +56,7 @@ docker build -t [IMAGE_TAG] .
 docker run -it -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
 ```
 
-### 2) b) As a script in bash cell
+### 3) b) As a script in bash cell
 
 - Uncomment the ENTRYPOINT line in the Dockerfile <br>
 
