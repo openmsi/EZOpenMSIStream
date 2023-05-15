@@ -10,7 +10,6 @@ Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e.
 ```
 docker pull openmsi/openmsistream
 ```
-- Extract code base from this repository via Git commands, or downloading the repo as a zip
 - Create openmsi.env with the necessary 3 credentials, and additional environnment variables that you might need:
 
 ```
@@ -24,7 +23,7 @@ CONFLUENT_PASSWORD=
 
 ### 2) Use OpenMSIStream with the default image
 
-With this option, all the user needs is to run a few commands from the Command Line Interface (CLI).
+With this option, all the user needs is to run a few commands from the Command Line Interface (CLI). **There is no need for the custom_image folder**.
 
 #### As a Docker Daemon
 
