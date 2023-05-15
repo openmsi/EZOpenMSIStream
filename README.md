@@ -10,7 +10,7 @@ Welcome to EZ_openMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e
 ```
 docker pull openmsi/openmsistream
 ```
-
+- Extract code base from this repository via Git commands, or downloading the repo as a zip
 - Create openmsi.env with the necessary 3 credentials, and additional environnment variables that you might need:
 
 ```
@@ -40,11 +40,11 @@ docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v local.config/local.confi
 
 ### 3) Use OpenMSIStream with a custom image
 
-This method allows you to track your OpenMSIStream command in startup-script.sh and run it as a bash script. 
+This method allows you to create a custom Docker image that runs your OpenMSIStream command in a bash script.
 
 #### Step 1
 
-- edit your script in startup-script.sh 
+Edit your script in startup-script.sh 
 
 #### As a Docker Daemon
 
