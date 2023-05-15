@@ -83,23 +83,28 @@ Both approaches require maintaining a local configuration and running Docker loc
 
 - custom image
   - :heavy_plus_sign: simpler configuration management?
-  - :heavy_plus_sign: beginneer-friendly with trackable commands in files
+  - :heavy_plus_sign: beginner-friendly with trackable commands in files
   - :heavy_minus_sign: complex image management
   - :heavy_minus_sign: images and containers must be built and deleted after end of use (see ```docker ps```). If not, the images and containers will continue to reside in memory 
   - :heavy_minus_sign: in case a user wants to build an official image on Docker Hub, there will be significant management efforts because images must be rebuilt, tested, and pushed with each new version
 
 #### Permission issues
 
-Note: the permissions on the TARGET_FOLDER will be inherited FROM the local kernel/system on which you're building/running TO the Docker image/container (see more details in this [article](https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf). <br>
+Permissions on the TARGET_FOLDER: <br>
+These will be inherited FROM the local system on which you're building TO the Docker image (see more details in this [article](https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf)). <br>
 OpenMSIStream requires read, write and execute permissions, hence, the permissions on the TARGET_FOLDER must be set using your local kernel PRIOR to running the docker image for the openmsistream module to run properly. Otherwise, your image won't run correctly, and one will get PermissionError  (```[Errno 13] Permission denied:```) or others. 
 
-Another option to manage the issues is to run docker as particular UID/GID:
+Permissions on the files mounted, such as openmsi.env, config.config, etc: <br>
+A pro of the custom image mode is that it handles the permissions of those files. However, with the default image mode, the permissions must also be configured in your local system PRIOR to running the docker image. 
+
+An alternative to manage the issues is to run docker as particular UID/GID.
 
 ```docker run -it --user "$(id -u ${USER}):$(id -g ${USER})" [REST OF THE COMMAND CALL]```
 
 
+
 #### Con of running in bash shell mode (independent of official or custom image)
 
-**Killing the shell means Killing the module.** the openmsistream module will run as long as the shell is alive. 
+Killing the shell means Killing the module! the openmsistream module will run as long as the shell is alive. 
 
-### Tracker
+### 5) Tracker
