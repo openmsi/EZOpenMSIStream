@@ -85,7 +85,7 @@ Both approaches require maintaining a local configuration and running Docker loc
   - :heavy_plus_sign: simpler configuration management?
   - :heavy_plus_sign: beginneer-friendly with trackable commands in files
   - :heavy_minus_sign: complex image management
-    :heavy_minus_sign: images and containers must be built and deleted after end of use (see ```docker ps```). If not, the images and containers will continue to reside in memory 
+  - :heavy_minus_sign: images and containers must be built and deleted after end of use (see ```docker ps```). If not, the images and containers will continue to reside in memory 
     :heavy_minus_sign: in case a user wants to build an official image on Docker Hub, there will be significant management efforts because images must be rebuilt, tested, and pushed with each new version
 
 #### Permission issues
