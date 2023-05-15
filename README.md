@@ -52,7 +52,7 @@ Inside custom_image/, this method allows you to create a custom Docker image (Do
 
 #### Step 1
 
-Edit your script in startup-script.sh 
+Edit your script in startup-script.sh as desired
 
 #### As a Docker Daemon
 
@@ -66,7 +66,7 @@ docker run -it -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env
 
 - Uncomment the ENTRYPOINT line in the Dockerfile <br>
 
-After building and running the image with the instructions in 2) a): <br>
+After building and running the image with the instructions in the section directly above: <br>
 
 ```
 docker exec -it [CONTAINER_ID] bash
@@ -85,17 +85,18 @@ Both approaches require maintaining a local configuration and running Docker loc
   - :heavy_plus_sign: simpler configuration management?
   - :heavy_plus_sign: beginner-friendly with trackable commands in files
   - :heavy_minus_sign: complex image management
-  - :heavy_minus_sign: images and containers must be built and deleted after end of use (see ```docker ps```). If not, the images and containers will continue to reside in memory 
-  - :heavy_minus_sign: in case a user wants to build an official image on Docker Hub, there will be significant management efforts because images must be rebuilt, tested, and pushed with each new version
+    - :heavy_minus_sign: images and containers must be built and deleted **manually** after end of use (see ```docker ps``` to track). If not, the images and containers will continue to reside in memory 
+    - :heavy_minus_sign: in case a user wants to build an official image on Docker Hub, there will be significant management efforts as images must be rebuilt, tested, and pushed with each new version
 
 #### Permission issues
 
 Permissions on the TARGET_FOLDER: <br>
 These will be inherited FROM the local system on which you're building TO the Docker image (see more details in this [article](https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf)). <br>
-OpenMSIStream requires read, write and execute permissions, hence, the permissions on the TARGET_FOLDER must be set using your local kernel PRIOR to running the docker image for the openmsistream module to run properly. Otherwise, your image won't run correctly, and one will get PermissionError  (```[Errno 13] Permission denied:```) or others. 
+OpenMSIStream requires read, write and execute permissions, hence, the permissions on the TARGET_FOLDER must be set using your local kernel PRIOR to running the docker image for the openmsistream module to run properly. 
 
-Permissions on the files mounted, such as openmsi.env, config.config, etc: <br>
-A pro of the custom image mode is that it handles the permissions of those files. However, with the default image mode, the permissions must also be configured in your local system PRIOR to running the docker image. 
+Permissions on the mounted files such as config.config, etc: <br>
+A pro of the custom image mode is that it handles the permissions of those files (see --chown/chmod Dockerfile). <br> 
+However, with the default image mode, the permissions must also be configured in your local system PRIOR to running the docker image. 
 
 An alternative to manage the issues is to run docker as particular UID/GID.
 
