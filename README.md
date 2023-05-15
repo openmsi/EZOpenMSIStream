@@ -23,7 +23,7 @@ CONFLUENT_PASSWORD=
 
 ### 2) Use OpenMSIStream with the default image
 
-With this option, all the user needs is to run a few commands from the Command Line Interface (CLI). **The custom_image folder won't be used but it contains **.
+With this option, all the user needs is to run a few commands from the Command Line Interface (CLI). **The custom_image folder won't be used**.
 
 #### As a Docker Daemon
 
