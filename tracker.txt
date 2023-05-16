@@ -1,8 +1,9 @@
-TYPE=
-SERVICE_NAME=
-SERVICE_LOCAL_LOCATION=
-SERVICE_LOCAL_TARGET_FOLDER=
-MACHINE_METADATA=
-CODE_METADATA
-INSTALLATION_NOTES=
-PRIMARY_CONTACT=
+TYPE=[Producer, Consumer, DataFileStreamProcessor, etc]
+SERVICE_NAME=[docker image name]
+SERVICE_LOCAL_LOCATION=[path to the folder containing config, openmsi.env, dockerfile, etc]
+SERVICE_LOCAL_TARGET_FOLDER=[path to the folder that is being produced to, consumed into, etc]
+MACHINE_METADATA=[Windows vs Mac; how to access (i.e.,TeamViewer)?]
+CODE_METADATA=[local path to code being used? git location?]
+INSTALLATION_NOTES=[any additional notes]
+PRIMARY_CONTACT_NAME=
+PRIMARY_CONTACT_EMAIL=

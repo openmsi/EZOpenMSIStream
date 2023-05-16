@@ -37,13 +37,14 @@ With this option, all the user needs is to run a few commands from the Command L
 #### As a Docker Daemon
 
 ```
-docker run -d -v [TARGET_FOLDER]:/home/openmsi/data -v local.config:/local.config --env-file openmsi.env openmsi/image [OPENMSISTREAM_COMMAND]
+docker run -d -v [TARGET_FOLDER]:/home/openmsi/data -v $(pwd)/config.config:/home/openmsi/config.config  --env-file openmsi.env openmsi/image [OPENMSISTREAM_COMMAND]
 ```
 
 #### As a script in bash shell
 
 ```
-docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v local.config/local.config --env-file openmsi.env --entrypoint /bin/bash openmsi/openmsistream
+docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v $(pwd)/config.config:/home/openmsi/config.config  --env-file openmsi.env --entrypoint /bin/bash openmsi/openmsistream
+
 ```
 
 ### 3) Use OpenMSIStream with a custom image
@@ -85,16 +86,16 @@ Both approaches require maintaining a local configuration and running Docker loc
   - :heavy_plus_sign: simpler configuration management?
   - :heavy_plus_sign: beginner-friendly with trackable commands in files
   - :heavy_minus_sign: complex image management
-    - :heavy_minus_sign: images and containers must be built and deleted **manually** after end of use (see ```docker ps``` to track). If not, the images and containers will continue to reside in memory 
-    - :heavy_minus_sign: in case a user wants to build an official image on Docker Hub, there will be significant management efforts as images must be rebuilt, tested, and pushed with each new version
+    - images and containers must be built and deleted **manually** after end of use (see ```docker ps``` to track). If not, the images and containers will continue to reside in memory 
+    - in case a user wants to build an official image on Docker Hub, there will be significant management efforts as images must be rebuilt, tested, and pushed with each new version
 
 #### Permission issues
 
-Permissions on the TARGET_FOLDER: <br>
+- Permissions on the TARGET_FOLDER: <br>
 These will be inherited FROM the local system on which you're building TO the Docker image (see more details in this [article](https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf)). <br>
 OpenMSIStream requires read, write and execute permissions, hence, the permissions on the TARGET_FOLDER must be set using your local kernel PRIOR to running the docker image for the openmsistream module to run properly. 
 
-Permissions on the mounted files such as config.config, etc: <br>
+- Permissions on the mounted files such as config.config, etc: <br>
 A pro of the custom image mode is that it handles the permissions of those files (see --chown/chmod Dockerfile). <br> 
 However, with the default image mode, the permissions must also be configured in your local system PRIOR to running the docker image. 
 
@@ -108,4 +109,11 @@ An alternative to manage the issues is to run docker as particular UID/GID.
 
 Killing the shell means Killing the module! the openmsistream module will run as long as the shell is alive. 
 
-### 5) Tracker
+### 5) Custom OpenMSIStream
+
+Uses of OpenMSIStream producers and consumers is largely unchanged. However, for OpenMSIStream tools like a file stream processor, a way of applying any function to files from the stream, the function changes on the use case. It can be an indentation or a spectral analysis; an SEM or XRD characterization; etc. <br>
+
+To handle such case, one must mount additional folder(s) containing the file stream processor functions, as well as an extra folder to write the results of your functions if needed. 
+
+
+### 6) Tracker
