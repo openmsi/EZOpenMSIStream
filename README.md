@@ -5,6 +5,7 @@ Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e.
 ### 1) Universal Steps
 
 - Install Docker (https://docs.docker.com/get-docker/)
+  - Optional: install github for future use (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
 - Pull official OpenMSIstream image (https://hub.docker.com/r/openmsi/openmsistream)
 
 ```
@@ -117,3 +118,5 @@ To handle such case, one must mount additional folder(s) containing the file str
 
 
 ### 6) Tracker
+
+Use a tracker.txt to document the process. 
