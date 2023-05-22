@@ -119,4 +119,4 @@ To handle such case, one must mount additional folder(s) containing the file str
 
 ### 6) Tracker
 
-Use a tracker.txt to document the process. 
+Use a tracker.json to document the process (see tracker.txt for info details)
