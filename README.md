@@ -28,7 +28,8 @@ OPENMSISTREAM_COMMAND = the command that you will run using the OpenMSIStream mo
 
 IMAGE_TAG = Name of the image set during ```docker build``` with --tag / -t option <br> 
 IMAGE_ID = ID of the image generated during ```docker build```. It is passed to ```docker run``` to instantiate the image in a container  <br> 
-CONTAINER_ID = ID/Name of the container that is generated during ```docker run``` in which the image is running. 
+CONTAINER_NAME = Name of the container that is generated during ```docker run``` in which the image is running. 
+CONTAINER_ID = ID of the container that is generated during ```docker run``` in which the image is running. 
 
 ### 2) Use OpenMSIStream with the default image
 
@@ -59,16 +60,20 @@ Edit your script in startup-script.sh as desired
 #### As a Docker Daemon
 
 ```
-docker build -t [IMAGE_TAG] .
+docker build -t [IMAGE_TAG] . --build-arg daemon_mode=1
 
-docker run -it -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_ID] [IMAGE_ID]
+docker run -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
 ```
 
 #### As a script in bash shell 
 
-- Uncomment the ENTRYPOINT line in the Dockerfile <br>
+```
+docker build -t [IMAGE_TAG] . 
 
-After building and running the image with the instructions in the section directly above: <br>
+docker run -it -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
+```
+
+After building and running the image, open a bash shell via which you can access the docker image: <br>
 
 ```
 docker exec -it [CONTAINER_ID] bash
@@ -115,7 +120,6 @@ Killing the shell means Killing the module! the openmsistream module will run as
 Uses of OpenMSIStream producers and consumers is largely unchanged. However, for OpenMSIStream tools like a file stream processor, a way of applying any function to files from the stream, the function changes on the use case. It can be an indentation or a spectral analysis; an SEM or XRD characterization; etc. <br>
 
 To handle such case, one must mount additional folder(s) containing the file stream processor functions, as well as an extra folder to write the results of your functions if needed. 
-
 
 ### 6) Tracker
 
