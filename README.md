@@ -2,7 +2,7 @@
 
 Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image. <br>
 
-### 1) Universal Steps
+### 1) a) Universal Steps
 
 - Install Docker (https://docs.docker.com/get-docker/)
   - Optional: install github for future use (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
@@ -21,9 +21,11 @@ CONFLUENT_PASSWORD=
 
 - edit config.config to set up the streaming pipeline and parameters (i.e., client.id)
 
+### 1) b) What you need to note to use OpenMSIStream
+
 **Note on vocabulary used below:** <br>
 TARGET_FOLDER = folder where data is to be produced or consumed. Whatever name the original folder has, it will always be represent as 'data' in the docker image <br> 
-OPENMSISTREAM_COMMAND = the command that you will run using the OpenMSIStream modules
+OPENMSISTREAM_COMMAND = the command that you will run using the OpenMSIStream modules. This will be the command in your startup-script.sh if you're running a custom image. 
 - Example: DataFileDownloadDirectory data --config config.config --topic_name ucsb_indentation_data <br> 
 
 IMAGE_TAG = Name of the image set during ```docker build``` with --tag / -t option <br> 
@@ -53,14 +55,10 @@ docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v $(pwd)/config.config:/ho
 
 Inside custom_image/, this method allows you to create a custom Docker image (Dockerfile) that runs your OpenMSIStream command in a bash script (startup-script.sh).
 
-#### Step 1
-
-Edit your script in startup-script.sh as desired
-
 #### As a Docker Daemon
 
 ```
-docker build -t [IMAGE_TAG] . --build-arg daemon_mode=1
+docker build -t [IMAGE_TAG] . 
 
 docker run -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
 ```
@@ -70,7 +68,7 @@ docker run -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --n
 ```
 docker build -t [IMAGE_TAG] . 
 
-docker run -it -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
+docker run -it --entrypoint bash -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
 ```
 
 After building and running the image, open a bash shell via which you can access the docker image: <br>
