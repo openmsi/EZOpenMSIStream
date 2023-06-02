@@ -1,0 +1,1 @@
+sudo docker run -it --entrypoint bash -d -v /srv/hemi01-j01/dmref/laser_shock_lab/ALPSS:/home/openmsi/custom_folder -v /srv/hemi01-j01/dmref/laser_shock_lab/ALPSS/containerized_alpss/exp_data_dir:/home/openmsi/data:z --env-file openmsi.env --name containerized_alpss [IMAGE_ID]

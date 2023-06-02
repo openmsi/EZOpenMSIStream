@@ -21,17 +21,19 @@ CONFLUENT_PASSWORD=
 
 - edit config.config to set up the streaming pipeline and parameters (i.e., client.id)
 
-### 1) b) What you need to note to use OpenMSIStream
+### 1) b) What you need to use OpenMSIStream
 
-**Note on vocabulary used below:** <br>
-TARGET_FOLDER = folder where data is to be produced or consumed. Whatever name the original folder has, it will always be represent as 'data' in the docker image <br> 
-OPENMSISTREAM_COMMAND = the command that you will run using the OpenMSIStream modules. This will be the command in your startup-script.sh if you're running a custom image. 
-- Example: DataFileDownloadDirectory data --config config.config --topic_name ucsb_indentation_data <br> 
+**Vocabulary used below:** <br>
+- TARGET_FOLDER = folder where data is to be produced or consumed. Whatever name the original folder has, it will always be represent as 'data' in the docker image <br> 
+- OPENMSISTREAM_COMMAND = the command that you will run using the OpenMSIStream modules. This will be the command in your startup-script.sh if you're running a custom image. 
+  - Example: DataFileDownloadDirectory data --config config.config --topic_name ucsb_indentation_data <br> 
 
-IMAGE_TAG = Name of the image set during ```docker build``` with --tag / -t option <br> 
-IMAGE_ID = ID of the image generated during ```docker build```. It is passed to ```docker run``` to instantiate the image in a container  <br> 
-CONTAINER_NAME = Name of the container that is generated during ```docker run``` in which the image is running. 
-CONTAINER_ID = ID of the container that is generated during ```docker run``` in which the image is running. 
+- IMAGE_TAG = Name of the image set during ```docker build``` with --tag / -t option <br> 
+- IMAGE_ID = ID of the image generated during ```docker build```. It is passed to ```docker run``` to instantiate the image in a container  <br> 
+- CONTAINER_NAME = Name of the container that is generated during ```docker run``` in which the image is running. 
+- CONTAINER_ID = ID of the container that is generated during ```docker run``` in which the image is running. 
+
+If you need to move custom code to the docker image, which is almost always the case when using a dataFileStreamProcessor, mount additional folders with ```-v  [CUSTOM_FOLDER_PATH]:/home/openmsi/custom_folder```
 
 ### 2) Use OpenMSIStream with the default image
 
@@ -58,17 +60,17 @@ Inside custom_image/, this method allows you to create a custom Docker image (Do
 #### As a Docker Daemon
 
 ```
-docker build -t [IMAGE_TAG] . 
+docker build -t [IMAGE_TAG] Dockerfile
 
-docker run -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
+docker run -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file ../openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
 ```
 
 #### As a script in bash shell 
 
 ```
-docker build -t [IMAGE_TAG] . 
+docker build -t [IMAGE_TAG] Dockerfile
 
-docker run -it --entrypoint bash -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
+docker run -it --entrypoint bash -d -v [TARGET_FOLDER]:/home/openmsi/data:z --env-file ../openmsi.env --name [CONTAINER_NAME] [IMAGE_ID]
 ```
 
 After building and running the image, open a bash shell via which you can access the docker image: <br>
