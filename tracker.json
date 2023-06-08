@@ -1,0 +1,11 @@
+{
+    "type" : "Producer", 
+    "service_name" : "htmdec_producer",
+    "service_local_location": "C:\Users\iMicro\Desktop\OpenMSIStream_setup",
+    "service_local_target_folder": "C:\Users\Public\Documents\Nanomechanics\Profiles\HTMDEC",
+    "installation_notes": "check status with ManageService htmdec_producer status, or restart with ManageService htmdec_producer stop_and_restart",
+    "primary_contact_name": "Florent Mignerot",
+    "primary_contact_email": "fmignero@ucsb.edu",
+    "machine_metadata": "Daemon Installation using Services on Windows 7",
+    "code_metadata": "a simple DataFileUploadDirectory to the ucsb_data topic using the base conda class, Python 3.7 and openmsistream 1.5.2 "
+}
