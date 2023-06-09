@@ -1,6 +1,6 @@
 # EZOpenMSIStream
 
-Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in a Docker image, built on the official OpenMSIStream image. <br>
+Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in ANY way (i.e., Linux/Windows Daemons, Docker image) built on the official OpenMSIStream image. <br>
 
 ### 1) a) Universal Steps
 
@@ -35,7 +35,13 @@ CONFLUENT_PASSWORD=
 
 If you need to move custom code to the docker image, which is almost always the case when using a dataFileStreamProcessor, mount additional folders with ```-v  [CUSTOM_FOLDER_PATH]:/home/openmsi/custom_folder```
 
-### 2) Use OpenMSIStream with the default image
+### 2) Use OpenMSIStream as a Daemon
+
+for Windows services: https://openmsistream.readthedocs.io/en/latest/user_info/services.html
+ 
+for Linux services: https://baykara.medium.com/how-to-daemonize-a-process-or-service-with-systemd-c34501e646c9
+
+### 3) Use OpenMSIStream with the default Docker image
 
 With this option, all the user needs is to run a few commands from the Command Line Interface (CLI).
 **The custom_image folder won't be used**.
@@ -53,7 +59,7 @@ docker run -it -v [TARGET_FOLDER]:/home/openmsi/data -v $(pwd)/config.config:/ho
 
 ```
 
-### 3) Use OpenMSIStream with a custom image
+### 4) Use OpenMSIStream with a custom Docker image
 
 Inside custom_image/, this method allows you to create a custom Docker image (Dockerfile) that runs your OpenMSIStream command in a bash script (startup-script.sh).
 
@@ -80,7 +86,7 @@ docker exec -it [CONTAINER_ID] bash
 . ./startup-script.sh
 ```
 
-### 4) Pros and Cons
+### 5) Pros and Cons
 
 Both approaches require maintaining a local configuration and running Docker locally, whether interactively or non-interactively. Both will have filesystem permission issues (see below).
 
@@ -115,12 +121,12 @@ An alternative to manage the issues is to run docker as particular UID/GID.
 
 Killing the shell means Killing the module! the openmsistream module will run as long as the shell is alive. 
 
-### 5) Custom OpenMSIStream
+### 6) Custom OpenMSIStream
 
 Uses of OpenMSIStream producers and consumers is largely unchanged. However, for OpenMSIStream tools like a file stream processor, a way of applying any function to files from the stream, the function changes on the use case. It can be an indentation or a spectral analysis; an SEM or XRD characterization; etc. <br>
 
 To handle such case, one must mount additional folder(s) containing the file stream processor functions, as well as an extra folder to write the results of your functions if needed. 
 
-### 6) Tracker
+### 7) Tracker
 
 Use a tracker.json to document the process (see tracker.txt for info details)
