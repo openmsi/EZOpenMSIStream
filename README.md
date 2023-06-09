@@ -2,6 +2,7 @@
 
 Welcome to EZOpenMSIStream, an easy way to deploy ANY OpenMSIStream module (i.e., DataFileUploadDirectory) in ANY way (i.e., Linux/Windows Daemons, Docker image, Runnable) built on the official OpenMSIStream image. <br>
 
+### 1) Get Started
 ### 1) a) Universal Steps
 
 - Install Docker (https://docs.docker.com/get-docker/)
@@ -41,6 +42,7 @@ for Windows services: https://openmsistream.readthedocs.io/en/latest/user_info/s
  
 for Linux services: https://baykara.medium.com/how-to-daemonize-a-process-or-service-with-systemd-c34501e646c9
 
+### 3) Use OpenMSIStream with Docker
 ### 3) a) Use OpenMSIStream with the default Docker image
 
 With this option, all the user needs is to run a few commands from the Command Line Interface (CLI).
